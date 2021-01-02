@@ -8,16 +8,26 @@ function App() {
 	const [voices, setVoices] = useState([]);
 	const speech = speechSynthesis;
 
-	if ("onvoiceschanged" in speech) {
-		speech.addEventListener("voiceschanged", () => {
-			setVoices(speech.getVoices());
-		});
-	}
 	useEffect(() => {
 		async function getExpressions() {
 			setExpressions(await require("./data/data"));
 		}
 
+		async function getVoices() {
+			try {
+				let voices = await speechSynthesis.getVoices();
+				if (voices.length) {
+					setVoices(voices);
+					return;
+				}
+				speech.addEventListener("voiceschanged", () => {
+					setVoices(speech.getVoices());
+				});
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		getVoices();
 		getExpressions();
 	}, []);
 	console.log(voices);

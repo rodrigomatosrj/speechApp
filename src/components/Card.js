@@ -3,10 +3,16 @@ import "./Card.css";
 
 function Card(props) {
 	function handleClick() {
+		const languages = {
+			en: "en-US",
+			pt: "pt-BR",
+			fr: "fr-FR",
+			es: "es-ES",
+			de: "de-DE",
+		};
 		let utterance = new SpeechSynthesisUtterance(props.txt);
-		utterance.voice = props.voices.find(
-			(el) => el.lang.slice(0, 2) === props.lang
-		);
+		utterance.lang = languages[props.lang];
+		utterance.voice = props.voices.find((el) => el.lang === utterance.lang);
 		speechSynthesis.speak(utterance);
 	}
 
