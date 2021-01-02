@@ -4,7 +4,10 @@ import "./Card.css";
 function Card(props) {
 	function handleClick() {
 		let utterance = new SpeechSynthesisUtterance(props.txt);
-		utterance.voice = props.voices.find(el => el.lang.slice(0,2) === props.lang )
+		utterance.voice = props.voices.find(
+			(el) => el.lang.slice(0, 2) === props.lang
+		);
+		utterance.lang = utterance.voice.lang;
 		speechSynthesis.speak(utterance);
 	}
 
