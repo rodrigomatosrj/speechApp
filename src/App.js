@@ -8,21 +8,18 @@ function App() {
 	const [voices, setVoices] = useState([]);
 	const speech = window.speechSynthesis;
 
+	speech.addEventListener("voiceschanged", () => {
+		setVoices(speech.getVoices());
+	});
+
 	useEffect(() => {
 		async function getExpressions() {
 			setExpressions(await require("./data/data"));
 		}
 
-
-		async function getVoices() {
-			setVoices(await speech.getVoices());
-		}
-    getExpressions();
-    getVoices();
-
-  }, []);
+		getExpressions();
+	}, []);
 	console.log(voices);
-
 
 	return (
 		<div className="container">
@@ -30,7 +27,15 @@ function App() {
 				<LangMenu lang={lang} setLang={setLang} />
 
 				{expressions.map((el, idx) => {
-					return <Card txt={el["lang"][lang]} img={el.img} key={idx} voices={voices} lang={lang}/>;
+					return (
+						<Card
+							txt={el["lang"][lang]}
+							img={el.img}
+							key={idx}
+							voices={voices}
+							lang={lang}
+						/>
+					);
 				})}
 			</div>
 		</div>
