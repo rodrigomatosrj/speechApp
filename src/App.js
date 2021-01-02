@@ -3,17 +3,15 @@ import Card from "./components/Card";
 import LangMenu from "./components/LangMenu";
 
 function App() {
-	const [lang, setLang] = useState("pt");
+	const [lang, setLang] = useState(navigator.language.slice(0, 2));
 	const [expressions, setExpressions] = useState([]);
 	const [voices, setVoices] = useState([]);
-	const speech = window.speechSynthesis;
+	const speech = speechSynthesis;
 
 	if ("onvoiceschanged" in speech) {
 		speech.addEventListener("voiceschanged", () => {
 			setVoices(speech.getVoices());
 		});
-	} else {
-		setVoices(speech.getVoices());
 	}
 	useEffect(() => {
 		async function getExpressions() {
