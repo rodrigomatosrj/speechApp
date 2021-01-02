@@ -7,7 +7,6 @@ function Card(props) {
 		utterance.voice = props.voices.find(
 			(el) => el.lang.slice(0, 2) === props.lang
 		);
-		utterance.lang = utterance.voice.lang;
 		speechSynthesis.speak(utterance);
 	}
 
