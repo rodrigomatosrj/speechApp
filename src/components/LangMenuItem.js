@@ -4,8 +4,8 @@ function LangMenuItem(props) {
 	return (
 		<li className="nav-item">
 			<a
-				className={props.active ? "nav-link active" : "nav-link"}
 				href="#"
+				className={props.active ? "nav-link active" : "nav-link"}
 				lang={props.lang}
 				onClick={props.onClick}
 			>

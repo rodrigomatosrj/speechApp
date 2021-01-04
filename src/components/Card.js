@@ -1,5 +1,7 @@
 import React from "react";
 import "./Card.css";
+import "./PlayButton";
+import PlayButton from "./PlayButton";
 
 function Card(props) {
 	function handleClick() {
@@ -20,10 +22,10 @@ function Card(props) {
 		<div className="card col-md-3">
 			<img src={props.img} className="card-img-top" alt={props.txt} />
 			<div className="card-body">
-				<h5 className="card-title">{props.txt}</h5>
-				<a href="#" onClick={handleClick} className="btn btn-primary">
-					Play
-				</a>
+				<h5 className="card-title">
+					<PlayButton onClick={handleClick} />
+					{props.txt}
+				</h5>
 			</div>
 		</div>
 	);

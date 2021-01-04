@@ -29,13 +29,12 @@ function App() {
 		}
 		getVoices();
 		getExpressions();
-	}, []);
-	console.log(voices);
+	}, [speech]);
 
 	return (
 		<div className="container">
 			<div className="row">
-				<LangMenu lang={lang} setLang={setLang} />
+				<LangMenu lang={lang} setLang={setLang}  voices={voices}/>
 
 				{expressions.map((el, idx) => {
 					return (
