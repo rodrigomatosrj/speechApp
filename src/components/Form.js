@@ -29,6 +29,7 @@ function Form(props) {
 		utterance.lang = languages[props.lang];
 		utterance.voice = props.voices.find((el) => el.lang === utterance.lang);
 		speechSynthesis.speak(utterance);
+		setState("");
 	}
 
 	return (
