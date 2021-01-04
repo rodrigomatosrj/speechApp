@@ -33,9 +33,9 @@ function Form(props) {
 	}
 
 	return (
-		<form class="d-flex" onSubmit={handleSubmit}>
+		<form className="d-flex" onSubmit={handleSubmit}>
 			<input
-				class="form-control me-2"
+				className="form-control me-2"
 				type="search"
 				placeholder={placeHolder[props.lang]}
 				aria-label={placeHolder[props.lang]}
